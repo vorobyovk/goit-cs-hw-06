@@ -1,0 +1,20 @@
+services:
+  mongo:
+    image: mongo:8.0.3
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  app:
+    build:
+      context: .
+    container_name: goit-cs-hw-06-final
+    depends_on:
+      - mongo
+    ports:
+      - "3000:3000"
+
+volumes:
+  mongo_data:
